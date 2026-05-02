@@ -129,6 +129,58 @@ $db^{[l]}$ & bias gradient & $\R^{n^{[l]} \times 1}$ \\
 $g'^{[l]}$ & activation derivative & elementwise map \\
 $m$ & batch size & $\mathbb{N}$ \\
 $n^{[l]}$ & units in layer $l$ & $\mathbb{N}$ \\
+$\theta_i$ & scalar parameter & scalar \\
+$e_i$ & basis vector for $\theta_i$ & same shape as $\theta$ \\
+$g$ & backprop gradient & parameter shape \\
+$g_{\mathrm{approx}}$ & numerical gradient & same shape as $g$ \\
+$\operatorname{diff}$ & gradient-check discrepancy & scalar \\
 \bottomrule
 \end{tabular}
 \end{center}
+
+\subsection{Gradient Checking}
+
+\FormulaName{Numerical gradient approximation}
+\[
+\frac{\partial \cost}{\partial \theta_i}
+\approx
+\frac{
+\cost(\theta+\epsilon e_i)
+-
+\cost(\theta-\epsilon e_i)
+}{
+2\epsilon
+}.
+\]
+\Shapes{$\theta_i$ is one scalar parameter; $e_i$ is the matching basis vector.}
+\Use{Sanity check for backprop implementation.}
+
+\FormulaName{Vector-form approximation}
+\[
+g_{\mathrm{approx}}
+\approx
+\frac{
+\cost(\theta+\epsilon)
+-
+\cost(\theta-\epsilon)
+}{
+2\epsilon
+}.
+\]
+\Shapes{$g_{\mathrm{approx}}$ has the same shape as $g$.}
+\Use{Numerical gradient vector.}
+
+\FormulaName{Relative difference}
+\[
+\operatorname{diff}
+=
+\frac{
+\left\lVert g-g_{\mathrm{approx}}\right\rVert_2
+}{
+\left\lVert g\right\rVert_2
++
+\left\lVert g_{\mathrm{approx}}\right\rVert_2
+}.
+\]
+\Use{Gradient-check discrepancy.}
+\Notes{$\epsilon$ small; disable dropout / randomness.}

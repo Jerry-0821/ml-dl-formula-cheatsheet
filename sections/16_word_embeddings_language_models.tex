@@ -196,6 +196,66 @@ P(w_i \given w_{<i}).
 \Use{Language-model evaluation metric.}
 \Notes{$N$ is the number of evaluated tokens; $w_{<i}$ denotes tokens before position $i$.}
 
+\subsection{Skip-gram Objective}
+
+\FormulaName{Skip-gram log-likelihood}
+\[
+\max
+\sum
+\log P(w_{\mathrm{context}}\given w_{\mathrm{center}}).
+\]
+\Use{Predict context words from a center word.}
+
+\FormulaName{Softmax context probability}
+\[
+P(w_o \given w_c)
+=
+\frac{
+\exp(u_o\transpose v_c)
+}{
+\sum_{w\in V}
+\exp(u_w\transpose v_c)
+}.
+\]
+\Shapes{$u_o,u_w,v_c\in\R^{d_e}$.}
+\Use{Skip-gram softmax objective.}
+
+\subsection{Negative Sampling}
+
+\FormulaName{Negative-sampling objective}
+\[
+\log \sigma(u_o\transpose v_c)
++
+\sum_{k=1}^{K}
+\mathbb{E}_{w_k\sim P_n}
+\left[
+\log \sigma(-u_k\transpose v_c)
+\right].
+\]
+\Shapes{$u_o,u_k,v_c\in\R^{d_e}$; $K$ is the number of negative samples.}
+\Use{Efficient approximation to softmax.}
+
+\subsection{GloVe Objective}
+
+\FormulaName{Weighted co-occurrence objective}
+\[
+\cost
+=
+\sum_{i,j}
+f(X_{ij})
+\left(
+w_i\transpose w_j
++
+b_i
++
+b_j
+-
+\log X_{ij}
+\right)^2.
+\]
+\Shapes{$w_i,w_j\in\R^{d_e}$; $X_{ij}$ is a co-occurrence count.}
+\Use{Uses global co-occurrence statistics.}
+
 \subsection{Word Embedding Symbol Table}
 
 \begin{center}
@@ -223,6 +283,14 @@ $T_x$ & input sequence length & $\mathbb{N}$ \\
 $T_y$ & output sequence length & $\mathbb{N}$ \\
 $N$ & evaluated token count & $\mathbb{N}$ \\
 $\operatorname{PPL}$ & perplexity & scalar \\
+$w_c,w_o$ & center / output word & elements of $V$ \\
+$u_w,u_o,u_k$ & output embedding vectors & $\R^{d_e}$ \\
+$v_c$ & center embedding vector & $\R^{d_e}$ \\
+$K$ & negative-sample count & $\mathbb{N}$ \\
+$P_n$ & negative-sampling distribution & distribution over $V$ \\
+$X_{ij}$ & co-occurrence count & nonnegative scalar \\
+$f(X_{ij})$ & GloVe weighting function & scalar weight \\
+$b_i,b_j$ & GloVe biases & scalars \\
 \bottomrule
 \end{tabular}
 \end{center}

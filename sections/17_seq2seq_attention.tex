@@ -286,6 +286,28 @@ b_o \in \R^{n_y \times 1}.
 \]
 \Use{Attention-based decoder step.}
 
+\subsection{BLEU Score}
+
+\FormulaName{BLEU}
+\[
+\operatorname{BLEU}
+=
+\operatorname{BP}
+\cdot
+\exp
+\left(
+\sum_{n=1}^{N}
+w_n \log p_n
+\right).
+\]
+\[
+\operatorname{BP}
+=
+\text{brevity penalty}.
+\]
+\Shapes{$p_n$ is modified $n$-gram precision; $\sum_{n=1}^{N}w_n=1$.}
+\Use{Sequence-level evaluation metric for translation.}
+
 \subsection{Seq2Seq / Attention Symbol Table}
 
 \begin{center}
@@ -320,6 +342,11 @@ $b_o$ & context-output bias & $\R^{n_y \times 1}$ \\
 $n_s$ & decoder hidden-state dimension & $\mathbb{N}$ \\
 $n_a$ & encoder hidden-state dimension & $\mathbb{N}$ \\
 $n_e$ & attention hidden dimension & $\mathbb{N}$ \\
+$\operatorname{BLEU}$ & translation metric & scalar \\
+$\operatorname{BP}$ & brevity penalty & scalar \\
+$p_n$ & modified $n$-gram precision & scalar \\
+$w_n$ & BLEU $n$-gram weight & scalar \\
+$N$ & maximum $n$-gram order & $\mathbb{N}$ \\
 \bottomrule
 \end{tabular}
 \end{center}

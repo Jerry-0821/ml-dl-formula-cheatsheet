@@ -99,6 +99,37 @@ y^{\langle 1\rangle},\dots,y^{\langle t-1\rangle},x
 \Shapes{$W^{[l]} \in \R^{n^{[l]} \times n^{[l-1]}}$.}
 \Use{L2-regularized objective.}
 
+\subsection{Label Smoothing}
+
+\FormulaName{Smoothed target}
+\[
+y_{\mathrm{smooth}}
+=
+(1-\varepsilon)y
++
+\frac{\varepsilon}{K}.
+\]
+\[
+\loss
+=
+-\sum_{k=1}^{K}
+(y_{\mathrm{smooth}})_k
+\log \hat{y}_k.
+\]
+\Shapes{$y,y_{\mathrm{smooth}},\hat{y}\in\R^{K\times 1}$.}
+\Use{Regularizes over-confident predictions.}
+
+\subsection{Focal Loss}
+
+\FormulaName{Focal loss}
+\[
+\operatorname{FL}(p_t)
+=
+-\alpha(1-p_t)^{\gamma}\log(p_t).
+\]
+\Shapes{$p_t\in(0,1)$; $\alpha,\gamma$ are scalar hyperparameters.}
+\Use{Handles class imbalance in object detection.}
+
 \subsection{Symbols}
 
 \begin{center}
@@ -116,6 +147,10 @@ $c$ & $\{1,\dots,K\}$ & true class index \\
 $T_y$ & $\mathbb{N}$ & output sequence length \\
 $\lambda$ & $\R_{\ge 0}$ & L2 regularization strength \\
 $\left\lVert W^{[l]} \right\rVert_F^2$ & scalar & squared Frobenius norm \\
+$y_{\mathrm{smooth}}$ & $\R^{K \times 1}$ & smoothed target distribution \\
+$\varepsilon$ & scalar & label-smoothing strength \\
+$p_t$ & $(0,1)$ & focal-loss target probability \\
+$\alpha,\gamma$ & scalar & focal-loss weights \\
 \bottomrule
 \end{tabular}
 \end{center}

@@ -179,6 +179,26 @@ A^{[l]}
 \]
 \Use{Channel projection / bottleneck convolution.}
 
+\subsection{Depthwise Separable Convolution}
+
+\FormulaName{Standard convolution parameters}
+\[
+\#\mathrm{params}_{\mathrm{standard}}
+=
+k^2 C_{\mathrm{in}} C_{\mathrm{out}}.
+\]
+\FormulaName{Depthwise separable parameters}
+\[
+\#\mathrm{params}_{\mathrm{dwsep}}
+=
+k^2 C_{\mathrm{in}}
++
+C_{\mathrm{in}} C_{\mathrm{out}}.
+\]
+\Shapes{$k$ is filter size; $C_{\mathrm{in}}$ input channels; $C_{\mathrm{out}}$ output channels.}
+\Use{Reduces parameters in MobileNet-style convolutions.}
+\Notes{Depthwise plus pointwise $(1\times1)$ convolution.}
+
 \subsection{CNN Symbol Table}
 
 \begin{center}
@@ -198,6 +218,9 @@ $n_C^{[l]}$ & channels / filters at layer $l$ & $\mathbb{N}$ \\
 $f^{[l]}$ & filter size & $\mathbb{N}$ \\
 $p^{[l]}$ & padding & $\mathbb{N}_0$ \\
 $s^{[l]}$ & stride & $\mathbb{N}$ \\
+$k$ & depthwise filter size & $\mathbb{N}$ \\
+$C_{\mathrm{in}}$ & input channels & $\mathbb{N}$ \\
+$C_{\mathrm{out}}$ & output channels & $\mathbb{N}$ \\
 $\mathcal{R}_{h,w}$ & pooling window & spatial index set \\
 \bottomrule
 \end{tabular}
