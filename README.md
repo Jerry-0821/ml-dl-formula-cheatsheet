@@ -11,6 +11,12 @@ It is not a textbook. Keep the project formula-focused.
 
 [Download the PDF](./main.pdf)
 
+## Release
+
+Current draft:
+
+- v0.1.0: Initial complete PDF draft with LaTeX source, formula sections, shape tables, and GitHub Actions build.
+
 ## Preview
 
 ![Notation preview](assets/preview/page-01.png)
@@ -25,13 +31,10 @@ It is not a textbook. Keep the project formula-focused.
 
 ## Current Status
 
-Current scaffold:
-
-- `main.tex` contains the LaTeX document shell, packages, notation macros, and section inputs.
-- `sections/01_notation.tex` contains the initial notation and tensor-shape convention.
-- `sections/02_logistic_regression.tex` through `sections/20_shape_reference.tex` are complete draft sections pending human review.
-- All planned section files have first-draft content.
-- Final formula verification, LaTeX compilation, and PDF polish are pending.
+- `main.pdf` is available as the current v0.1.0 draft PDF.
+- `sections/02_logistic_regression.tex` through `sections/20_shape_reference.tex` are complete draft sections.
+- GitHub Actions builds the PDF successfully from `main.tex`.
+- Further formula verification and optional layout polish are ongoing.
 - `FORMULA_COVERAGE_PLAN.md` defines the formula coverage map and verification checklist.
 - `SOURCES.md` records primary workspace sources and source policy.
 
