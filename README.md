@@ -15,7 +15,7 @@ It is not a textbook. Keep the project formula-focused.
 
 Current draft:
 
-- [v0.1.0 - Initial Complete Draft](https://github.com/Jerry-0821/deep-learning-formula-cheatsheet/releases/tag/v0.1.0): Initial complete PDF draft with LaTeX source, formula sections, shape tables, and GitHub Actions build.
+- [v0.2.0 - Formula Hierarchy and Core Extensions](https://github.com/Jerry-0821/deep-learning-formula-cheatsheet/releases/tag/v0.2.0): Updated PDF draft with formula hierarchy labels, high-value missing formulas, refreshed previews, and GitHub Actions build.
 
 ## Preview
 
@@ -31,7 +31,7 @@ Current draft:
 
 ## Current Status
 
-- `main.pdf` is available as the current v0.1.0 draft PDF.
+- `main.pdf` is available as the current v0.2.0 draft PDF.
 - `sections/02_logistic_regression.tex` through `sections/20_shape_reference.tex` are complete draft sections.
 - GitHub Actions builds the PDF successfully from `main.tex`.
 - Further formula verification and optional layout polish are ongoing.
