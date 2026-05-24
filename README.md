@@ -49,43 +49,58 @@ textbooks. They are compact references for revision and formula checking.
   <img src="assets/preview/deep-learning-transformer.png" width="47%" alt="Deep learning preview: Transformer formulas">
 </p>
 
-## Release
+## About the Sheets
 
-Deep Learning current draft:
+### Machine Learning Formula & Decision Sheet
 
-- [v0.2.0 - Formula Hierarchy and Core Extensions](https://github.com/Jerry-0821/ml-dl-formula-cheatsheet/releases/tag/v0.2.0): Updated PDF draft with formula hierarchy labels, high-value missing formulas, refreshed previews, and GitHub Actions build.
+A mathematical reference for machine learning theory and model-based
+decisions. It combines objectives, update rules, compact derivations, metric
+interpretation, and judgment-style checkpoints for questions where selecting
+the correct method matters as much as recalling the formula.
 
-Machine Learning current artifact:
+### Deep Learning Formula Cheat Sheet
 
-- `machine-learning-formula-decision-sheet.pdf`: standalone mathematical review sheet with compact derivations and theory checkpoints.
+A compact formula and tensor-shape reference for deep learning. It focuses on
+forward computations, losses, gradient flows, optimizer updates,
+architecture-specific objectives, and shape rules.
 
-## Current Status
+## Coverage
 
-- `main.pdf` is available as the current Deep Learning v0.2.0 draft PDF.
-- `machine-learning-formula-decision-sheet.pdf` is available as the Machine Learning review PDF.
-- GitHub Actions currently builds the Deep Learning PDF successfully from `main.tex`.
-- The Deep Learning LaTeX sections are maintained in `sections/`.
-- `FORMULA_COVERAGE_PLAN.md` defines the formula coverage map and verification checklist.
-- `SOURCES.md` records primary workspace sources and source policy.
+| Machine Learning Formula & Decision Sheet | Deep Learning Formula Cheat Sheet |
+| --- | --- |
+| Linear, polynomial, and logistic regression | Neural-network notation and forward propagation |
+| Cost functions, gradient descent, regularization, Lasso, and Elastic Net | Loss functions, backpropagation, initialization, and optimization |
+| Evaluation, ROC-AUC, PR-AUC, bias/variance, and error analysis | Regularization and batch normalization |
+| Neural-network foundations, decision trees, bagging, and boosting | CNNs, classic architectures, object detection, and YOLO |
+| K-means, anomaly detection, and recommender systems | Face recognition and neural style transfer |
+| Reinforcement learning, Bellman equations, Q-learning, and Deep Q Networks | RNN/GRU/LSTM, embeddings, Seq2Seq, attention, and Transformers |
 
-## Deep Learning Source Build
+## Design Principles
 
-Local build:
+- Keep entries compact and formula-focused.
+- Prefer display mathematics for central objectives and updates.
+- Define notation close to the formulas that use it.
+- Include shapes where dimensions clarify the computation.
+- Include short derivations where they explain an update, metric, or decision rule.
+- Prefer concise tables and notes over textbook-length prose.
+
+## Artifacts
+
+| Artifact | Status |
+| --- | --- |
+| `machine-learning-formula-decision-sheet.pdf` | Available as the current Machine Learning review sheet. |
+| `main.pdf` | Available as the current Deep Learning formula sheet. |
+| Deep Learning LaTeX source in `main.tex` and `sections/` | Included in this repository and built by GitHub Actions. |
+
+The current tagged Deep Learning draft is
+[v0.2.0 - Formula Hierarchy and Core Extensions](https://github.com/Jerry-0821/ml-dl-formula-cheatsheet/releases/tag/v0.2.0).
+
+## Building From Source
+
+The currently included LaTeX source builds the Deep Learning sheet:
 
 ```bash
 make pdf
-```
-
-Clean local LaTeX artifacts:
-
-```bash
-make clean
-```
-
-Remove generated PDF:
-
-```bash
-make distclean
 ```
 
 Manual fallback:
@@ -94,182 +109,13 @@ Manual fallback:
 latexmk -pdf main.tex
 ```
 
-GitHub Actions builds the Deep Learning `main.pdf` and uploads it as the
+GitHub Actions builds `main.pdf` and uploads it as the
 `deep-learning-formula-cheatsheet-pdf` artifact.
 
-## Deep Learning Authoring Rules
+## Source and Scope Policy
 
-- Keep entries compact.
-- Prefer display math for important formulas.
-- Add shapes near formulas.
-- Use consistent notation from `sections/01_notation.tex`.
-- Avoid long derivations unless the derivation itself is the reference item.
-- Avoid raw Unicode math symbols when LaTeX commands are clearer.
-- Prefer formulas, tensor shapes, update rules, and compact reference tables over prose.
-- Do not use external sources to expand project scope.
-
-## Deep Learning Formula Entry Standard
-
-Each formula entry should include only:
-
-- Formula name
-- Formula
-- Shapes
-- Use: one short phrase
-- Notes: optional, at most 1-2 bullets
-
-Target LaTeX pattern:
-
-```tex
-\FormulaName{Formula name}
-\[
-...
-\]
-\Shapes{...}
-\Use{one short phrase}
-\Notes{one or two short notes only when necessary}
-```
-
-## Deep Learning Layout Standard
-
-The PDF uses four layout types:
-
-### Type A: Process / Pipeline Topic
-
-Use for Logistic Regression, Forward Propagation, Backpropagation,
-Optimization, Batch Normalization, RNN / LSTM, Attention, and Transformer Block.
-
-Required structure:
-
-- Assumptions / Input Shapes
-- Main Process formulas
-- Loss / Objective, if relevant
-- Backward / Gradients, if relevant
-- Update Rule, if relevant
-- Symbols and Shapes
-- Key Simplifications / Variants, if relevant
-
-Pipeline style:
-
-```tex
-X \to Z \to A \to J \to dZ \to dW, db \to \text{update}
-```
-
-### Type B: Formula Table Topic
-
-Use for Activation Functions, Loss Functions, Initialization, Regularization
-formulas, and Metrics.
-
-Required structure:
-
-- Compact formula table
-- Derivative / gradient column where useful
-- Range / output type column where useful
-- One short use phrase only when necessary
-- Symbol notes only when symbols are not obvious
-
-### Type C: Shape Rule Topic
-
-Use for CNN output size, pooling output size, CNN parameter count, RNN
-hidden-state shapes, Transformer Q/K/V shapes, and shape reference tables.
-
-Required structure:
-
-- Input shape
-- Formula for output shape
-- Output shape
-- Parameter shape, if relevant
-- Symbol table
-
-### Type D: Architecture / Objective Topic
-
-Use for ResNet, Inception, YOLO, Triplet Loss, Neural Style Transfer, Beam
-Search, and Transformer Block.
-
-Required structure:
-
-- Core pattern or objective formula
-- Symbols
-- Shape notes, if relevant
-- Compact variants only if important
-
-## Deep Learning Scope
-
-### V1 Core Sections
-
-- 01 Notation and Tensor Shapes
-- 02 Logistic Regression
-- 03 Forward Propagation
-- 04 Activation Functions
-- 05 Loss Functions
-- 06 Backpropagation
-- 07 Optimization
-- 08 Initialization
-- 09 Regularization
-- 10 Batch Normalization
-- 11 CNN
-- 15 RNN / GRU / LSTM
-- 18 Transformer and Self-Attention
-- 20 Shape Reference Tables
-
-### V1 Compact Appendix Sections
-
-- 12 Classic CNN Architectures
-- 13 Object Detection and YOLO
-- 14 Face Recognition and Neural Style Transfer
-- 16 Word Embeddings and Language Models
-- 17 Seq2Seq, Beam Search, and Attention
-- 19 ML Strategy Formula Appendix
-
-### V2 Deferred Topics
-
-- GAN
-- VAE
-- Diffusion models
-- Reinforcement learning
-- Modern YOLO variants
-- Advanced Transformer variants
-
-## Deep Learning PDF Sections
-
-1. Notation and Tensor Shapes
-2. Logistic Regression and Binary Classification
-3. Forward Propagation
-4. Activation Functions
-5. Loss and Cost Functions
-6. Backpropagation
-7. Gradient Descent and Optimization
-8. Initialization
-9. Regularization
-10. Batch Normalization
-11. Convolutional Neural Networks
-12. Classic CNN Architectures
-13. Object Detection and YOLO
-14. Face Recognition and Neural Style Transfer
-15. RNN / GRU / LSTM
-16. Word Embeddings and Language Models
-17. Seq2Seq, Beam Search, and Attention
-18. Transformer and Self-Attention
-19. ML Strategy Formula Appendix
-20. Shape Reference Tables
-
-## Deep Learning Source Policy
-
-Primary sources are the provided workspace materials. External sources should be
-used only to verify formulas, shapes, and notation for topics already in the
-coverage map. They must not expand the scope unless the topic is already planned.
-Every external source used must be recorded in `SOURCES.md`.
-
-## Deep Learning Framework Conventions
-
-- Example index: `(i)`
-- Layer index: `[l]`
-- Sequence time-step index: `\langle t \rangle`
-- Mini-batch index: `\{k\}`
-- Main CNN convention: NHWC, with single image `H x W x C` and batch
-  `m x H x W x C`
-- PyTorch NCHW mapping `m x C x H x W` belongs in the shape reference appendix
-- V1 YOLO convention: course-style `S x S x (B * 5 + C)`
-- Modern YOLO head variants are deferred to V2
-- Transformer starts with simplified single-head `Q`, `K`, `V` shapes, then
-  adds batch and multi-head shape references
+Each sheet follows the scope of the study materials used to prepare it.
+External references may be used to verify standard formulas, notation, shapes,
+or mathematical correctness, but the sheets are not intended to silently
+expand into complete textbooks. The goal is a reliable, compact mathematical
+review resource within the covered topic range.
